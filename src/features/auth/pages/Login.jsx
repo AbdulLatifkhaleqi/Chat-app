@@ -1,16 +1,16 @@
 import { useForm } from "react-hook-form";
-
+import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import Input from "../../../components/ui/Input";
 import SubmitButton from "../../../components/ui/SubmitButton";
 
 import { loginSchema } from "../validations/auth.schema";
-
 import { useLogin } from "../hooks/useLogin";
 
 export default function Login() {
   const { mutate, isPending } = useLogin();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -84,6 +84,12 @@ export default function Login() {
           />
 
           <SubmitButton title="Login" loading={isPending} />
+          <div className="flex items-center text-white  gap-3 justify-center w-fit">
+            <p>Don't have an account </p>
+            <p className="cursor-pointer" onClick={() => navigate("/")}>
+              Register
+            </p>
+          </div>
         </form>
       </div>
     </div>
