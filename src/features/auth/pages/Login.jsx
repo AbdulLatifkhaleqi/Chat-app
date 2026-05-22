@@ -5,19 +5,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../../../components/ui/Input";
 import SubmitButton from "../../../components/ui/SubmitButton";
 
-import { registerSchema } from "../validations/auth.schema";
+import { loginSchema } from "../validations/auth.schema";
 
-import { useRegister } from "../hooks/useRegsiter";
+import { useLogin } from "../hooks/useLogin";
 
-export default function Register() {
-  const { mutate, isPending } = useRegister();
+export default function Login() {
+  const { mutate, isPending } = useLogin();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(loginSchema),
   });
 
   const onSubmit = (data) => {
@@ -32,9 +32,9 @@ export default function Register() {
         items-center
         justify-center
         bg-gradient-to-br
-        from-slate-950
-        via-indigo-950
-        to-slate-950
+        from-black
+        via-slate-950
+        to-indigo-950
         px-4
       "
     >
@@ -53,26 +53,20 @@ export default function Register() {
       >
         <div className="mb-8 text-center">
           <h1
-            className="text-4xl
+            className="
+              text-4xl
               font-bold
               text-white
               mb-3
             "
           >
-            Create Account
+            Welcome Back
           </h1>
 
-          <p className="text-slate-300">Start your professional journey</p>
+          <p className="text-slate-300">Login to your account</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <Input
-            label="Full Name"
-            placeholder="Enter your full name"
-            register={register("name")}
-            error={errors.name}
-          />
-
           <Input
             label="Email Address"
             type="email"
@@ -89,7 +83,7 @@ export default function Register() {
             error={errors.password}
           />
 
-          <SubmitButton title="Create Account" loading={isPending} />
+          <SubmitButton title="Login" loading={isPending} />
         </form>
       </div>
     </div>

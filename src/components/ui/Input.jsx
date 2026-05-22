@@ -1,9 +1,11 @@
+import { FiAlertCircle } from "react-icons/fi";
+
 export default function Input({
   label,
   type = "text",
   placeholder,
-  error,
   register,
+  error,
 }) {
   return (
     <div className="space-y-2">
@@ -17,18 +19,26 @@ export default function Input({
           w-full
           px-4
           py-3
-          rounded-xl
+          rounded-2xl
           bg-slate-900/70
           border
           border-slate-700
           text-white
+          placeholder:text-slate-400
           outline-none
           focus:border-indigo-500
-          transition
+          focus:ring-2
+          focus:ring-indigo-500/20
+          transition-all
         "
       />
 
-      {error && <p className="text-red-400 text-sm">{error.message}</p>}
+      {error && (
+        <div className="flex items-center gap-2 text-red-400 text-sm">
+          <FiAlertCircle />
+          <p>{error.message}</p>
+        </div>
+      )}
     </div>
   );
 }
